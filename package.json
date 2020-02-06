@@ -1,0 +1,39 @@
+{
+  "name": "lim011-fe-md-links",
+  "version": "0.0.1",
+  "description": "kjhgfk",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.0.0",
+    "jest": "^25.1.0",
+    "marked": "^0.8.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.0"
+  },
+  "scripts": {
+    "eslint": "eslint --ext .js src/ test/",
+    "pretest": "npm run eslint",
+    "test": "jest --verbose --coverage",
+    "open-coverage-report": "opener ./coverage/lcov-report/index.html",
+    "start": "serve ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YasmitDaysi/LIM011-fe-md-links.git"
+  },
+  "keywords": [
+    "lim011"
+  ],
+  "author": "Yasmit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YasmitDaysi/LIM011-fe-md-links/issues"
+  },
+  "homepage": "https://github.com/YasmitDaysi/LIM011-fe-md-links#readme"
+}
