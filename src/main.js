@@ -64,51 +64,6 @@ const obtenerLinks = (ruta) => {
   });
   return newArrayArr;
 };
-// console.log(obtenerLinks('/home/yasmit/LIM011-fe-md-links/prueb'));
-
-
-// const funcionValidar = (ruta) => {
-//   const guardarP = [];
-//   obtenerLinks(ruta).forEach((Element) => {
-//     const obj = { ...Element };
-
-//     guardarP.push(fetch(Element.href)
-//       .then((Response) => {
-//         if ((Response.status >= 200) && (Response.status <= 399)) {
-//           obj.status = Response.status;
-//           obj.message = 'OK';
-//           // console.log('principio', Element);
-//           return obj;
-//         }
-//         obj.status = Response.status;
-//         obj.message = 'FAIL';
-//         // console.log('finallll', obj);
-
-//         return obj;
-//       }).catch(() => ({
-//         status: 'no existe',
-//         mensaje: 'fail',
-//       })));
-//   });
-//   return Promise.all(guardarP);
-// };
-// funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((Response) =>
-// console.log(Response));
-
-// const mdLinks = (ruta, options) => {
-//   if (rutAbsoluta(ruta)) {
-//     if (options === true) {
-//       return funcionValidar(ruta);
-//     }
-//     return Promise.resolve(obtenerLinks(ruta));
-//     // Promise.resolve(obtenerLinks(ruta)).then((value) => value);
-//   }
-//   const nuevoRuta = rutRelativa(ruta);
-//   return mdLinks(nuevoRuta, options);
-// };
-// mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', true).then((Response) => console.log(Response));
-// console.log(mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', false));
-
 
 module.exports = {
   rutAbsoluta,
@@ -120,5 +75,6 @@ module.exports = {
   contenidoDirectorio,
   leeContenidoArchivoMd,
   obtenerLinks,
+  // funcionValidar,
 
 };

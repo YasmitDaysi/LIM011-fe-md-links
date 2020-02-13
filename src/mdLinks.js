@@ -1,6 +1,5 @@
-const fetchNode = require('node-fetch');
+const fetch = require('node-fetch');
 const funcionesTest = require('../src/main');
-
 
 const funcionValidar = (ruta) => {
   const guardarP = [];
@@ -8,7 +7,7 @@ const funcionValidar = (ruta) => {
   funcionesTest.obtenerLinks(ruta).forEach((Element) => {
     const obj = { ...Element };
 
-    guardarP.push(fetchNode(Element.href)
+    guardarP.push(fetch(Element.href)
       .then((Response) => {
         if ((Response.status >= 200) && (Response.status <= 399)) {
           obj.status = Response.status;
@@ -28,8 +27,6 @@ const funcionValidar = (ruta) => {
   });
   return Promise.all(guardarP);
 };
-// funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((Response) =>
-// console.log(Response));
 
 const mdLinks = (ruta, options) => {
   let nuevoRuta = ruta;
@@ -42,7 +39,7 @@ const mdLinks = (ruta, options) => {
   return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
 };
 mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: true }).then((Response) => console.log(Response));
-// console.log( typeof mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: false }));
+
 module.exports = {
   funcionValidar,
   mdLinks,
