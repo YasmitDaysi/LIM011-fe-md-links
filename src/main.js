@@ -1,27 +1,23 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
-// const fetch = require('node-fetch');
 
-const rutAbsoluta = (ruta) => path.isAbsolute(ruta); // retorna una ruta absoluta
-const rutRelativa = (ruta) => path.resolve(ruta); // retorna una ruta absoluta de una ruta relativa
-// console.log(rutAbsoluta('README.md'));
-const archiboMd = (ruta) => path.extname(ruta) === '.md'; // retorna archivos .md
-const contenidoDirectorio = (ruta) => fs.readdirSync(ruta); // retorna contenido del directorio
-const leeContenidoArchivoMd = (ruta) => (fs.readFileSync(ruta, 'utf-8')).trim(); // lee el contenido de un archivo
-// console.log(contenidoDirectorio('/home/yasmit/LIM011-fe-md-links/prueb'));
+const rutAbsoluta = (ruta) => path.isAbsolute(ruta);
+const rutRelativa = (ruta) => path.resolve(ruta);
+const archiboMd = (ruta) => path.extname(ruta) === '.md';
+const contenidoDirectorio = (ruta) => fs.readdirSync(ruta);
+const leeContenidoArchivoMd = (ruta) => (fs.readFileSync(ruta, 'utf-8')).trim();
 
 
 const rutArchivo = (ruta) => {
   const estadoArchivo = fs.statSync(ruta);
   return estadoArchivo.isFile();
-}; // retorna true si es un archivo
+};
 
 const rutDirectorio = (ruta) => {
   const estadoCarpeta = fs.statSync(ruta);
   return estadoCarpeta.isDirectory();
-};// retorna true si es un directorio
-// console.log(contenidoDirectorio('/home/yasmit/LIM011-fe-md-links'));
+};
 
 const funcionRecursión = (ruta) => {
   let newArray = [];
@@ -33,16 +29,14 @@ const funcionRecursión = (ruta) => {
     const listaContenido = contenidoDirectorio(ruta);
     listaContenido.forEach((Element) => {
       const rutaAbsoluta = path.join(ruta, Element);
-      // console.log(ruta, Element);
       newArray = newArray.concat(funcionRecursión(rutaAbsoluta));
     });
   }
   return newArray;
-};// retorna un arra de archivos .md
-// console.log(funcionRecursión('/home/yasmit/LIM011-fe-md-links/prueb'));
+};
+
 const markdownLinkExtractor = (ruta) => {
   let links = [];
-
   const renderer = new marked.Renderer();
   const contenidoArch = leeContenidoArchivoMd(ruta);
   renderer.link = (href, file, text) => {
@@ -53,8 +47,6 @@ const markdownLinkExtractor = (ruta) => {
 
   return links;
 };
-
-// console.log(markdownLinkExtractor('/home/yasmit/LIM011-fe-md-links/README.md'));
 
 const obtenerLinks = (ruta) => {
   let newArrayArr = [];
@@ -75,6 +67,5 @@ module.exports = {
   contenidoDirectorio,
   leeContenidoArchivoMd,
   obtenerLinks,
-  // funcionValidar,
 
 };

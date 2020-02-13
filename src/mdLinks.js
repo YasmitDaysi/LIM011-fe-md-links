@@ -12,12 +12,10 @@ const funcionValidar = (ruta) => {
         if ((Response.status >= 200) && (Response.status <= 399)) {
           obj.status = Response.status;
           obj.message = 'OK';
-          // console.log('principio', Element);
           return obj;
         }
         obj.status = Response.status;
         obj.message = 'FAIL';
-        // console.log('finallll', obj);
 
         return obj;
       }).catch(() => ({
@@ -38,8 +36,7 @@ const mdLinks = (ruta, options) => {
   }
   return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
 };
-mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: true }).then((Response) => console.log(Response));
-
+mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: true });
 module.exports = {
   funcionValidar,
   mdLinks,
