@@ -1,3 +1,4 @@
+const path = require('path');
 const funcionesTest = require('../src/main');
 
 
@@ -63,8 +64,8 @@ describe('leeContenidoArchivoMd', () => {
     expect(typeof funcionesTest.leeContenidoArchivoMd).toBe('function');
   });
   it('deberia retornar en contenido del archivo', () => {
-    const input = '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md';
-    const output = '[Node.js](https://nodejs.org/en/)';
+    const input = path.join(process.cwd(), 'prueb/prueba2/ReadmePrueba.md');
+    const output = '[Node.js](https://nodejs.org/en/)[Node.js](https:/dejs.org/en/)';
     expect(funcionesTest.leeContenidoArchivoMd(input)).toEqual(output);
   });
 });
@@ -97,11 +98,17 @@ describe('obtenerLinks', () => {
     expect(typeof funcionesTest.obtenerLinks).toBe('function');
   });
   it('deberia retornau un array con Links, Path y Text', () => {
-    const input = '/home/yasmit/LIM011-fe-md-links/prueb';
+    const input = path.join(process.cwd(), 'prueb');
     const output = [{
       href: 'https://nodejs.org/en/',
       path:
- '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md',
+     '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md',
+      text: 'Node.js',
+    },
+    {
+      href: 'https:/dejs.org/en/',
+      path:
+     '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md',
       text: 'Node.js',
     },
     {

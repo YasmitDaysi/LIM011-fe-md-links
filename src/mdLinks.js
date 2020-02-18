@@ -18,10 +18,11 @@ const funcionValidar = (ruta) => {
         obj.message = 'FAIL';
 
         return obj;
-      }).catch(() => ({
-        status: 'no existe',
-        mensaje: 'fail',
-      })));
+      }).catch(() => {
+        obj.status = 'no existe';
+        obj.mensaje = 'fail';
+        return obj;
+      }));
   });
   return Promise.all(guardarP);
 };
@@ -36,7 +37,8 @@ const mdLinks = (ruta, options) => {
   }
   return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
 };
-mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: true });
+
+mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: false }).then((resolve) => console.log(resolve));
 module.exports = {
   funcionValidar,
   mdLinks,

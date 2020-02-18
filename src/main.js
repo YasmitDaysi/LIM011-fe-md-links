@@ -37,6 +37,7 @@ const funcionRecursión = (ruta) => {
 
 const markdownLinkExtractor = (ruta) => {
   let links = [];
+
   const renderer = new marked.Renderer();
   const contenidoArch = leeContenidoArchivoMd(ruta);
   renderer.link = (href, file, text) => {
@@ -56,6 +57,7 @@ const obtenerLinks = (ruta) => {
   });
   return newArrayArr;
 };
+
 
 module.exports = {
   rutAbsoluta,

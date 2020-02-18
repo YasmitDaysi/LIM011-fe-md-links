@@ -34,6 +34,9 @@
   ],
   "author": "Yasmit",
   "license": "ISC",
+  "bin": {
+    "md-link": "src/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/YasmitDaysi/LIM011-fe-md-links/issues"
   },
