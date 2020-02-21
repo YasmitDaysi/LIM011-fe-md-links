@@ -1,12 +1,15 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
+// const fetch = require('node-fetch');
 
-const rutAbsoluta = (ruta) => path.isAbsolute(ruta);
-const rutRelativa = (ruta) => path.resolve(ruta);
-const archiboMd = (ruta) => path.extname(ruta) === '.md';
-const contenidoDirectorio = (ruta) => fs.readdirSync(ruta);
-const leeContenidoArchivoMd = (ruta) => (fs.readFileSync(ruta, 'utf-8')).trim();
+const rutAbsoluta = (ruta) => path.isAbsolute(ruta); // retorna una ruta absoluta
+const rutRelativa = (ruta) => path.resolve(ruta); // retorna una ruta absoluta de una ruta relativa
+// console.log(rutAbsoluta('README.md'));
+const archiboMd = (ruta) => path.extname(ruta) === '.md'; // retorna archivos .md
+const contenidoDirectorio = (ruta) => fs.readdirSync(ruta); // retorna contenido del directorio
+const leeContenidoArchivoMd = (ruta) => (fs.readFileSync(ruta, 'utf-8')).trim(); // lee el contenido de un archivo
+// console.log(xx'/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md'));
 
 
 const rutArchivo = (ruta) => {
@@ -33,8 +36,8 @@ const funcionRecursión = (ruta) => {
     });
   }
   return newArray;
-};
-
+};// retorna un arra de archivos .md
+// console.log(funcionRecursión('/home/yasmit/LIM011-fe-md-links/prueb'));
 const markdownLinkExtractor = (ruta) => {
   let links = [];
 
@@ -49,6 +52,8 @@ const markdownLinkExtractor = (ruta) => {
   return links;
 };
 
+// console.log(markdownLinkExtractor('/home/yasmit/LIM011-fe-md-links/README.md'));
+
 const obtenerLinks = (ruta) => {
   let newArrayArr = [];
   const arraArchivosMd = funcionRecursión(ruta);
@@ -57,6 +62,7 @@ const obtenerLinks = (ruta) => {
   });
   return newArrayArr;
 };
+// console.log(obtenerLinks('/home/yasmit/LIM011-fe-md-links/prueb'));
 
 
 module.exports = {
@@ -69,5 +75,6 @@ module.exports = {
   contenidoDirectorio,
   leeContenidoArchivoMd,
   obtenerLinks,
+  // funcionValidar,
 
 };

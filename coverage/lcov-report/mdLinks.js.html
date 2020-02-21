@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.15% </span>
+                <span class="strong">96.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/26</span>
+                <span class='fraction'>31/32</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.15% </span>
+                <span class="strong">96.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/26</span>
+                <span class='fraction'>30/31</span>
             </div>
         
             
@@ -103,35 +103,44 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -145,6 +154,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,31 +163,35 @@
 const funcionesTest = require('../src/main');
 &nbsp;
 const funcionValidar = (ruta) =&gt; {
-  const guardarP = [];
+  const arr = funcionesTest.obtenerLinks(ruta).map((Element) =&gt; {
+    const obj = {};
 &nbsp;
-  funcionesTest.obtenerLinks(ruta).forEach((Element) =&gt; {
-    const obj = { ...Element };
-&nbsp;
-    guardarP.push(fetch(Element.href)
+    return fetch(Element.href)
       .then((Response) =&gt; {
+        obj.status = Response.status;
+        obj.href = Element.href;
+        obj.path = Element.path;
+        obj.text = Element.text;
         if ((Response.status &gt;= 200) &amp;&amp; (Response.status &lt;= 399)) {
-          obj.status = Response.status;
           obj.message = 'OK';
           return obj;
         }
-        obj.status = Response.status;
         obj.message = 'FAIL';
-&nbsp;
         return obj;
       }).catch(() =&gt; {
         obj.status = 'no existe';
+        obj.href = Element.href;
+        obj.path = Element.path;
+        obj.text = Element.text;
         obj.mensaje = 'fail';
         return obj;
-      }));
+      });
   });
-  return Promise.all(guardarP);
+  return Promise.all(arr);
 };
-// funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((resolve) =&gt; console.log(resolve));
+&nbsp;
+&nbsp;
+funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((resolve) =&gt; console.log(resolve));
 &nbsp;
 const mdLinks = (ruta, options) =&gt; {
   let nuevoRuta = ruta;
@@ -190,7 +204,8 @@ const mdLinks = (ruta, options) =&gt; {
   return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
 };
 // mdLinks('/home/yasmit/LIM011-fe-md-links/prueb',
-// { validate: false }).then((resolve) =&gt; console.log(resolve));
+// { validate: true }).then((resolve) =&gt; console.log(resolve));
+&nbsp;
 module.exports = {
   funcionValidar,
   mdLinks,
@@ -202,7 +217,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 17 2020 18:25:13 GMT-0500 (GMT-05:00)
+                at Tue Feb 18 2020 17:02:30 GMT-0500 (GMT-05:00)
             </div>
         </div>
         <script src="prettify.js"></script>

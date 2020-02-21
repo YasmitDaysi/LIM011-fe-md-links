@@ -1,3 +1,4 @@
+// const fetchMock = require('jest-fetch-mock');
 const path = require('path');
 
 
@@ -34,6 +35,7 @@ describe('funcionValidar', () => {
       message: 'FAIL',
     }];
     return promesasTest.funcionValidar(path.join(process.cwd(), 'prueb')).then((resolve) => {
+      console.log(resolve);
       expect(resolve).toEqual(resultado);
       done();
     });

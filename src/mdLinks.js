@@ -2,30 +2,34 @@ const fetch = require('node-fetch');
 const funcionesTest = require('../src/main');
 
 const funcionValidar = (ruta) => {
-  const guardarP = [];
+  const arr = funcionesTest.obtenerLinks(ruta).map((Element) => {
+    const obj = {};
 
-  funcionesTest.obtenerLinks(ruta).forEach((Element) => {
-    const obj = { ...Element };
-
-    guardarP.push(fetch(Element.href)
+    return fetch(Element.href)
       .then((Response) => {
+        obj.status = Response.status;
+        obj.href = Element.href;
+        obj.path = Element.path;
+        obj.text = Element.text;
         if ((Response.status >= 200) && (Response.status <= 399)) {
-          obj.status = Response.status;
           obj.message = 'OK';
           return obj;
         }
-        obj.status = Response.status;
         obj.message = 'FAIL';
-
         return obj;
       }).catch(() => {
         obj.status = 'no existe';
-        obj.mensaje = 'fail';
+        obj.href = Element.href;
+        obj.path = Element.path;
+        obj.text = Element.text;
+        obj.message = 'fail';
         return obj;
-      }));
+      });
   });
-  return Promise.all(guardarP);
+  return Promise.all(arr);
 };
+
+// funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((resolve) => console.log(resolve));
 
 const mdLinks = (ruta, options) => {
   let nuevoRuta = ruta;
@@ -37,8 +41,9 @@ const mdLinks = (ruta, options) => {
   }
   return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
 };
+// mdLinks('/home/yasmit/LIM011-fe-md-links/prueb',
+// { validate: true }).then((resolve) => console.log(resolve));
 
-mdLinks('/home/yasmit/LIM011-fe-md-links/prueb', { validate: false }).then((resolve) => console.log(resolve));
 module.exports = {
   funcionValidar,
   mdLinks,
