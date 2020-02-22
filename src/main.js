@@ -1,80 +1,58 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
-// const fetch = require('node-fetch');
 
-const rutAbsoluta = (ruta) => path.isAbsolute(ruta); // retorna una ruta absoluta
-const rutRelativa = (ruta) => path.resolve(ruta); // retorna una ruta absoluta de una ruta relativa
-// console.log(rutAbsoluta('README.md'));
-const archiboMd = (ruta) => path.extname(ruta) === '.md'; // retorna archivos .md
-const contenidoDirectorio = (ruta) => fs.readdirSync(ruta); // retorna contenido del directorio
-const leeContenidoArchivoMd = (ruta) => (fs.readFileSync(ruta, 'utf-8')).trim(); // lee el contenido de un archivo
-// console.log(xx'/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md'));
+const absolutePath = (route) => path.isAbsolute(route);
+const getAbsolutePath = (route) => path.resolve(route);
+const isMD = (route) => path.extname(route) === '.md';
+const readDirectory = (route) => fs.readdirSync(route);
+const readFile = (route) => (fs.readFileSync(route, 'utf-8')).trim();
+const isFile = (route) => fs.statSync(route).isFile();
+const isDirectory = (route) => fs.statSync(route).isDirectory();
 
-
-const rutArchivo = (ruta) => {
-  const estadoArchivo = fs.statSync(ruta);
-  return estadoArchivo.isFile();
-};
-
-const rutDirectorio = (ruta) => {
-  const estadoCarpeta = fs.statSync(ruta);
-  return estadoCarpeta.isDirectory();
-};
-
-const funcionRecursión = (ruta) => {
-  let newArray = [];
-  if (archiboMd(ruta) === true && rutArchivo(ruta) === true) {
-    newArray.push(ruta);
-    leeContenidoArchivoMd(ruta);
+const saveRoutesOfFiles = (route) => {
+  let allFiles = [];
+  if (isFile(route) && isMD(route)) {
+    allFiles.push(route);
   }
-  if (rutDirectorio(ruta) === true) {
-    const listaContenido = contenidoDirectorio(ruta);
-    listaContenido.forEach((Element) => {
-      const rutaAbsoluta = path.join(ruta, Element);
-      newArray = newArray.concat(funcionRecursión(rutaAbsoluta));
+  if (isDirectory(route)) {
+    const getDirectoryContent = readDirectory(route);
+    getDirectoryContent.forEach((Element) => {
+      const rutaAbsoluta = path.join(route, Element);
+      allFiles = allFiles.concat(saveRoutesOfFiles(rutaAbsoluta));
     });
   }
-  return newArray;
-};// retorna un arra de archivos .md
-// console.log(funcionRecursión('/home/yasmit/LIM011-fe-md-links/prueb'));
-const markdownLinkExtractor = (ruta) => {
+  return allFiles;
+};
+
+const markdownLinkExtractor = (route) => {
   let links = [];
-
   const renderer = new marked.Renderer();
-  const contenidoArch = leeContenidoArchivoMd(ruta);
+  const fileContent = readFile(route);
   renderer.link = (href, file, text) => {
-    links = links.concat([{ href, path: ruta, text }]);
+    links = links.concat([{ href, path: route, text }]);
   };
-
-  marked(contenidoArch, { renderer });
-
+  marked(fileContent, { renderer });
   return links;
 };
 
-// console.log(markdownLinkExtractor('/home/yasmit/LIM011-fe-md-links/README.md'));
-
-const obtenerLinks = (ruta) => {
-  let newArrayArr = [];
-  const arraArchivosMd = funcionRecursión(ruta);
-  arraArchivosMd.forEach((Element) => {
-    newArrayArr = newArrayArr.concat(markdownLinkExtractor(Element));
+const getAllLinks = (ruta) => {
+  let allLinks = [];
+  const filePaths = saveRoutesOfFiles(ruta);
+  filePaths.forEach((Element) => {
+    allLinks = allLinks.concat(markdownLinkExtractor(Element));
   });
-  return newArrayArr;
+  return allLinks;
 };
-// console.log(obtenerLinks('/home/yasmit/LIM011-fe-md-links/prueb'));
-
 
 module.exports = {
-  rutAbsoluta,
-  rutRelativa,
-  rutArchivo,
-  rutDirectorio,
-  archiboMd,
-  funcionRecursión,
-  contenidoDirectorio,
-  leeContenidoArchivoMd,
-  obtenerLinks,
-  // funcionValidar,
-
+  absolutePath,
+  getAbsolutePath,
+  isFile,
+  isDirectory,
+  isMD,
+  saveRoutesOfFiles,
+  readDirectory,
+  readFile,
+  getAllLinks,
 };

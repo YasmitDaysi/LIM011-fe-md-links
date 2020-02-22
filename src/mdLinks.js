@@ -1,24 +1,24 @@
 const fetch = require('node-fetch');
-const funcionesTest = require('../src/main');
+const validateLinks = require('../src/main');
 
-const funcionValidar = (ruta) => {
-  const arr = funcionesTest.obtenerLinks(ruta).map((Element) => {
+const functionValidate = (ruta) => {
+  const arrPromise = validateLinks.getAllLinks(ruta).map((Element) => {
     const obj = {};
 
     return fetch(Element.href)
-      .then((Response) => {
-        obj.status = Response.status;
+      .then((resolve) => {
+        obj.status = resolve.status;
         obj.href = Element.href;
         obj.path = Element.path;
         obj.text = Element.text;
-        if ((Response.status >= 200) && (Response.status <= 399)) {
+        if ((resolve.status >= 200) && (resolve.status <= 399)) {
           obj.message = 'OK';
           return obj;
         }
         obj.message = 'FAIL';
         return obj;
       }).catch(() => {
-        obj.status = 'no existe';
+        obj.status = 'does not exist';
         obj.href = Element.href;
         obj.path = Element.path;
         obj.text = Element.text;
@@ -26,25 +26,20 @@ const funcionValidar = (ruta) => {
         return obj;
       });
   });
-  return Promise.all(arr);
+  return Promise.all(arrPromise);
 };
-
-// funcionValidar('/home/yasmit/LIM011-fe-md-links/prueb').then((resolve) => console.log(resolve));
 
 const mdLinks = (ruta, options) => {
-  let nuevoRuta = ruta;
-  if (funcionesTest.rutAbsoluta(ruta) === false) {
-    nuevoRuta = funcionesTest.rutRelativa(ruta);
+  let newRoute = ruta;
+  if (!validateLinks.absolutePath(ruta)) {
+    newRoute = validateLinks.getAbsolutePath(ruta);
+  } else if (options.validate) {
+    return functionValidate(newRoute);
   }
-  if (options.validate === true) {
-    return funcionValidar(nuevoRuta);
-  }
-  return Promise.resolve(funcionesTest.obtenerLinks(nuevoRuta));
+  return Promise.resolve(validateLinks.getAllLinks(newRoute));
 };
-// mdLinks('/home/yasmit/LIM011-fe-md-links/prueb',
-// { validate: true }).then((resolve) => console.log(resolve));
 
 module.exports = {
-  funcionValidar,
+  functionValidate,
   mdLinks,
 };

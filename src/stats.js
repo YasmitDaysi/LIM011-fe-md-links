@@ -1,21 +1,20 @@
 
 const lengthArray = (ruta) => ruta.length;
-
-const uniqueLink = (arrayb) => {
-  const resultado = arrayb.map((Element) => Element.href);
-  return new Set(resultado).size;
-};
-
 const brokenLink = (data) => data.filter((element) => element.message === 'FAIL').length;
 
+const uniqueLink = (arrayb) => {
+  const result = arrayb.map((Element) => Element.href);
+  return new Set(result).size;
+};
+
 const functionStats = (ruta, option) => {
-  let resultado = '';
-  resultado += `Total : ${lengthArray(ruta)}\n`;
-  resultado += `unique: ${uniqueLink(ruta)}\n`;
+  let result = '';
+  result += `Total : ${lengthArray(ruta)}\n`;
+  result += `unique: ${uniqueLink(ruta)}\n`;
   if (option.validate === true) {
-    resultado += `Broken: ${brokenLink(ruta)}\n`;
+    result += `Broken: ${brokenLink(ruta)}\n`;
   }
-  return resultado;
+  return result;
 };
 
 const validateFalse = (data) => {
