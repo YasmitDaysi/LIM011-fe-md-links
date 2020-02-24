@@ -2,7 +2,7 @@
   "name": "lim011-fe-md-links",
   "version": "0.0.1",
   "description": "kjhgfk",
-  "main": "index.js",
+  "main": "mdLinks.js",
   "directories": {
     "test": "test"
   },

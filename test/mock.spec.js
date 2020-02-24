@@ -1,14 +1,12 @@
-// const fetchMock = require('jest-fetch-mock');
 const path = require('path');
-
 
 jest.mock('node-fetch');
 
 const promesasTest = require('../src/mdLinks');
 
-describe('funcionValidar', () => {
+describe('functionValidate', () => {
   test('deberia ser una funcion', () => {
-    expect(typeof promesasTest.funcionValidar).toBe('function');
+    expect(typeof promesasTest.functionValidate).toBe('function');
   });
   it('deberia retornar array de objetos con las propiedades:href, path, text, status, message', (done) => {
     const resultado = [{
@@ -24,8 +22,8 @@ describe('funcionValidar', () => {
       path:
      '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md',
       text: 'Node.js',
-      status: 'no existe',
-      mensaje: 'fail',
+      status: 'does not exist',
+      message: 'fail',
     },
     {
       href: 'https://nodejs.org/e/',
@@ -34,8 +32,7 @@ describe('funcionValidar', () => {
       status: 404,
       message: 'FAIL',
     }];
-    return promesasTest.funcionValidar(path.join(process.cwd(), 'prueb')).then((resolve) => {
-      console.log(resolve);
+    return promesasTest.functionValidate(path.join(process.cwd(), 'prueb')).then((resolve) => {
       expect(resolve).toEqual(resultado);
       done();
     });
@@ -83,8 +80,8 @@ describe('mdLinks', () => {
       path:
      '/home/yasmit/LIM011-fe-md-links/prueb/prueba2/ReadmePrueba.md',
       text: 'Node.js',
-      status: 'no existe',
-      mensaje: 'fail',
+      status: 'does not exist',
+      message: 'fail',
     },
     {
       href: 'https://nodejs.org/e/',

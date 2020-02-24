@@ -19,15 +19,4 @@ if (arrayElements[3] === '--stats' && arrayElements[4] === '--validate') {
   options.stats = true;
   options.validate = true;
 }
-// console.log(opcion);
-// const ; validatealidate
-
-// funcionCliNode.cliMdlink(route, opcion).then((resolve) => console.log(resolve));
 funcionCliNode.cliMdlink(route, options).then((resolve) => console.log(resolve));
-
-// if (route) {
-//   funcionCliNode(route, {}).then((resolve) => console.log(resolve));
-// }
-// if (arrayElements) {
-//   funcionCliNode(route, valitade).then((resolve) => console.log(resolve));
-// }

@@ -32,9 +32,12 @@ const markdownLinkExtractor = (route) => {
   renderer.link = (href, file, text) => {
     links = links.concat([{ href, path: route, text }]);
   };
+
   marked(fileContent, { renderer });
+
   return links;
 };
+
 
 const getAllLinks = (ruta) => {
   let allLinks = [];
@@ -55,4 +58,5 @@ module.exports = {
   readDirectory,
   readFile,
   getAllLinks,
+
 };
