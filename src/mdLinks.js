@@ -1,4 +1,4 @@
-const functionValidate = require('./validateLink.js');
+const functionValidateLink = require('./validateLink.js');
 const validateLinks = require('./main');
 
 
@@ -7,7 +7,7 @@ const mdLinks = (ruta, options) => {
   if (!validateLinks.absolutePath(ruta)) {
     newRoute = validateLinks.getAbsolutePath(ruta);
   } else if (options.validate) {
-    return functionValidate(newRoute);
+    return functionValidateLink.functionValidate(newRoute);
   }
   return Promise.resolve(validateLinks.getAllLinks(newRoute));
 };

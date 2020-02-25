@@ -2,11 +2,13 @@ const path = require('path');
 
 jest.mock('node-fetch');
 
-const promesasTest = require('../src/mdLinks');
+const mdLinksFunctions = require('../src/mdLinks');
+const validateLinkFunctions = require('../src/validateLink');
+
 
 describe('functionValidate', () => {
   test('deberia ser una funcion', () => {
-    expect(typeof promesasTest.functionValidate).toBe('function');
+    expect(typeof validateLinkFunctions.functionValidate).toBe('function');
   });
   it('deberia retornar array de objetos con las propiedades:href, path, text, status, message', (done) => {
     const resultado = [{
@@ -32,7 +34,7 @@ describe('functionValidate', () => {
       status: 404,
       message: 'FAIL',
     }];
-    return promesasTest.functionValidate(path.join(process.cwd(), 'prueb')).then((resolve) => {
+    return validateLinkFunctions.functionValidate(path.join(process.cwd(), 'prueb')).then((resolve) => {
       expect(resolve).toEqual(resultado);
       done();
     });
@@ -41,7 +43,7 @@ describe('functionValidate', () => {
 
 describe('mdLinks', () => {
   test('deberia ser una funcion', () => {
-    expect(typeof promesasTest.mdLinks).toBe('function');
+    expect(typeof mdLinksFunctions.mdLinks).toBe('function');
   });
   it('deberia retornar array de objetos con las propiedades:href, path, text', (done) => {
     const resultado = [{
@@ -61,7 +63,7 @@ describe('mdLinks', () => {
       path: '/home/yasmit/LIM011-fe-md-links/prueb/readme.md',
       text: 'Node.js',
     }];
-    return promesasTest.mdLinks(path.join(process.cwd(), 'prueb'), { validate: false }).then((resolve) => {
+    return mdLinksFunctions.mdLinks(path.join(process.cwd(), 'prueb'), { validate: false }).then((resolve) => {
       expect(resolve).toEqual(resultado);
       done();
     });
@@ -90,7 +92,7 @@ describe('mdLinks', () => {
       status: 404,
       message: 'FAIL',
     }];
-    promesasTest.mdLinks(path.join(process.cwd(), 'prueb'), { validate: true }).then((resolve) => {
+    mdLinksFunctions.mdLinks(path.join(process.cwd(), 'prueb'), { validate: true }).then((resolve) => {
       expect(resolve).toEqual(resultado);
       done();
     });

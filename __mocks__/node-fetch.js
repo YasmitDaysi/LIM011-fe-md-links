@@ -1,5 +1,5 @@
-const nodeFetch = jest.requireActual('node-fetch');// requiere de node-fetch
-const fetchMock = require('fetch-mock').sandbox();// sandbox es uno de sus metodo de fetch-mock lo que hace hacer una simulacion de llamadas y respuesta de la llamada tiene doto los metodos de fetc-mock parahacer llamadas pero sandbox se burla de las llamadas
+const nodeFetch = jest.requireActual('node-fetch');
+const fetchMock = require('fetch-mock').sandbox();
 
 Object.assign(fetchMock.config, {
   fetch: nodeFetch,

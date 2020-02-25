@@ -1,18 +1,18 @@
 {
-  "name": "lim011-fe-md-links",
+  "name": "md-links",
   "version": "0.0.1",
-  "description": "kjhgfk",
-  "main": "mdLinks.js",
+  "description": "Read and analyze files in Markdown format and verify the links they contain and report some statistics.",
+  "main": "src/mdLinks.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "eslint-config-airbnb-base": "^14.0.0",
     "jest": "^25.1.0",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.0",
     "fetch-mock": "^9.0.0-beta.2",
@@ -30,12 +30,14 @@
     "url": "git+https://github.com/YasmitDaysi/LIM011-fe-md-links.git"
   },
   "keywords": [
-    "lim011"
+    "md-links",
+    "markdown",
+    "extract links"
   ],
-  "author": "Yasmit",
+  "author": "Yasmit Vasquez",
   "license": "ISC",
   "bin": {
-    "md-link": "src/cli.js"
+    "md-links": "src/cli.js"
   },
   "bugs": {
     "url": "https://github.com/YasmitDaysi/LIM011-fe-md-links/issues"
