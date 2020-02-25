@@ -12,25 +12,26 @@ la información que se quiere compartir.
 
 El objetivo es crear una herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
 
-### 'Diagrama de Flujo'
+## Diagrama de Flujo
 
 
-### 'Instalación y guía de uso de la librería'
-- Para usar este proyecto, lo primero que debe hacer es instalar la librería. Para ello ejecute en la terminal la siguiente línea de comando:
+## Instalación y guía de uso de la librería
+ Para usar este proyecto, lo primero que debe hacer es instalar la librería. Para ello ejecute en la terminal la siguiente línea de comando:
 
   `npm install YasmitDaysi/LIM011-fe-md-links`
 
-   ## Esta libreria se puede usarse de dos formas:
+## Esta libreria se puede usarse de dos formas:
 
 1. Importando el módulo con require para usarlo programáticamente:
 
  ```js const mdLinks = require("md-links")```
 
-**API**
-       mdLinks(path, options)
-Argumentos
- ***path:*** Tipo de dato string que representa la ruta absoluta o relativa al archivo o directorio. Si la ruta pasada es relativa, se resuelve como relativa al directorio desde donde se invoca node - current working directory).
- ***options:*** Un objeto con las seguientes propiedades.
+## API
+      ```js  
+      mdLinks(path, options) 
+      ```
+ `path:` Tipo de dato string que representa la ruta absoluta o relativa al archivo o directorio. Si la ruta pasada es relativa, se resuelve como relativa al directorio desde donde se invoca node - current working directory).
+ `options:` Un objeto con las seguientes propiedades.
 
 ```sh
 {validate: booleano}.
@@ -64,15 +65,15 @@ mdLinks("./some/example.md", { validate: true })
 
  mdLinks("./some/example.md", { stats: true })
   .then(links => {
-    //  Total: 3
-Unique: 3
+    //  Total: 3 
+    // Unique: 3
   }) 
 
 mdLinks("./some/example.md", { stats: true, validate: true })
   .then(links => {
     // Total: 3
-Unique: 3
-Broken: 1
+// Unique: 3
+// Broken: 1
   }) 
 ```
 
@@ -122,5 +123,5 @@ Broken: 1
 ```
 
  **LICENCIA**
-Licencia Copyright (c) 2020, yasmit vasquez Licencia ISC.
+- Licencia Copyright (c) 2020, yasmit vasquez Licencia ISC.
 
