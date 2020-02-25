@@ -22,15 +22,14 @@ El objetivo es crear una herramienta usando Node.js, que lea y analice archivos 
 
 ## Esta libreria se puede usarse de dos formas:
 
-1. # Importando el módulo con require para usarlo programáticamente:
+1. ## Importando el módulo con require para usarlo programáticamente:
 
  ```js const mdLinks = require("md-links")```
 
 ## API
 
-    ```sh 
-  mdLinks(path, options) 
-    ```
+`mdLinks(path, options)`
+   
  - `path:` Tipo de dato string que representa la ruta absoluta o relativa al archivo o directorio. Si la ruta pasada es relativa, se resuelve como relativa al directorio desde donde se invoca node - current working directory).
  - `options:` Un objeto con las seguientes propiedades.
 
@@ -78,7 +77,7 @@ mdLinks("./some/example.md", { stats: true, validate: true })
   }) 
 ```
 
-2. # A través de la terminal: 
+2. ## A través de la terminal: 
 
 `md-links <path-to-file> {options};`
 
@@ -123,6 +122,6 @@ Unique: 3
 Broken: 1
 ```
 
- ## LICENCIA
+ ### LICENCIA
 - Licencia Copyright (c) 2020, yasmit vasquez Licencia ISC.
 
