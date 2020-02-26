@@ -13,7 +13,7 @@ la información que se quiere compartir.
 El objetivo es crear una herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
 
 ## Diagrama de Flujo
-
+'../src/'
 
 ## Instalación y guía de uso de la librería
  Para usar este proyecto, lo primero que debe hacer es instalar la librería. Para ello ejecute en la terminal la siguiente línea de comando:
