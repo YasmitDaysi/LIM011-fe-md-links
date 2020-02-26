@@ -14,6 +14,7 @@ El objetivo es crear una herramienta usando Node.js, que lea y analice archivos 
 
 ## Diagrama de Flujo
 ![md-links](https://github.com/YasmitDaysi/LIM011-fe-md-links/blob/master/src/image/diagrama%20de%20flujo%20md-links.png)
+
 ## Instalación y guía de uso de la librería
  Para usar este proyecto, lo primero que debe hacer es instalar la librería. Para ello ejecute en la terminal la siguiente línea de comando:
 
