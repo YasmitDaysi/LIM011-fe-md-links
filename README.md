@@ -20,11 +20,12 @@ El objetivo es crear una herramienta usando Node.js, que lea y analice archivos 
 
   `npm install YasmitDaysi/LIM011-fe-md-links`
 
-## Esta libreria se puede usarse de dos formas:
 
 1. ## Importando el módulo con require para usarlo programáticamente:
 
- ```js const mdLinks = require("md-links")```
+ ```sh
+  const mdLinks = require("md-links")
+  ```
 
 ## API
 
