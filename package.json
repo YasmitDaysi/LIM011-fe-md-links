@@ -1,6 +1,6 @@
 {
-  "name": "md-links",
-  "version": "0.0.1",
+  "name": "md-links-yasmit",
+  "version": "1.0.2",
   "description": "Read and analyze files in Markdown format and verify the links they contain and report some statistics.",
   "main": "src/mdLinks.js",
   "directories": {
@@ -35,7 +35,7 @@
     "extract links"
   ],
   "author": "Yasmit Vasquez",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "md-links": "src/cli.js"
   },

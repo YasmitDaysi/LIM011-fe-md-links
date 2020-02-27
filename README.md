@@ -124,5 +124,5 @@ Broken: 1
 ```
 
  ### LICENCIA
-- Licencia Copyright (c) 2020, yasmit vasquez Licencia ISC.
+- Licencia Copyright (c) 2020, yasmit vasquez Licencia MIT.
 
