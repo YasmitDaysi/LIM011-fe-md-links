@@ -13,7 +13,7 @@ la información que se quiere compartir.
 El objetivo es crear una herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
 
 ## Diagrama de Flujo
-![md-links](https://github.com/YasmitDaysi/LIM011-fe-md-links/blob/master/src/image/diagrama%20de%20flujo%20md-links.png)
+![md-links](https://raw.githubusercontent.com/YasmitDaysi/LIM011-fe-md-links/master/src/image/diagrama%20de%20flujo%20md-links.png)
 
 ## Instalación y guía de uso de la librería
  Para usar este proyecto, lo primero que debe hacer es instalar la librería. Para ello ejecute en la terminal la siguiente línea de comando:
@@ -21,7 +21,7 @@ El objetivo es crear una herramienta usando Node.js, que lea y analice archivos 
   `npm install YasmitDaysi/LIM011-fe-md-links`
 
 
-1. ## Importando el módulo con require para usarlo programáticamente:
+1.  Importando el módulo con require para usarlo programáticamente:
 
  ```sh
   const mdLinks = require("md-links")
